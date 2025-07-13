@@ -10,11 +10,10 @@ function CartPage({ cartItems, removeFromCart, updateQuantity }) {
     useEffect(() => {
     // Check if the cart is empty
     if (cartItems.length === 0) {
-      console.log("Cart is empty, redirecting...");
-      // Redirect to the home page (continue shopping)
+      console.log("Cart is empty, redirecting...");  
       navigate('/');
     }
-    // This effect runs whenever the cartItems array changes
+
   }, [cartItems, navigate]);
   
   const calculateItemTotal = (item) => item.price * item.quantity;
@@ -27,17 +26,13 @@ function CartPage({ cartItems, removeFromCart, updateQuantity }) {
    
   
   return (
-    <div className="bg-white rounded-lg shadow-xl p-6 mx-auto max-w-4xl font-righteous mt-8">
+    <div className="bg-white rounded-lg shadow-xl p-6 mx-auto max-w-[100%] font-righteous mt-8">
       <div className="flex justify-between items-center border-b pb-4 mb-4">
         <h2 className="text-3xl font-bold text-gray-800">Your Shopping Cart</h2>
         <Link to="/" className="text-blue-600 hover:underline text-lg">
           Continue Shopping
         </Link>
       </div>
-
-      {cartItems.length === 0 ? (
-        <p className="text-gray-600 text-center py-16 text-xl">Your cart is empty. Go add some awesome products!</p>
-      ) : (
         <>
           <div className="grid grid-cols-1 gap-4">
             {cartItems.map((item) => (
@@ -106,7 +101,7 @@ function CartPage({ cartItems, removeFromCart, updateQuantity }) {
            
           </div>
         </>
-      )}
+      
     </div>
   );
 }

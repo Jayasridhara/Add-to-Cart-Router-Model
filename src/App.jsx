@@ -4,7 +4,7 @@ import loadingImage from './assets/loding.gif'
 import Sidebar from './components/Sidebar';
 import Toolbar from './components/Toolbar';
 
-import { createBrowserRouter,RouterProvider, Outlet} from 'react-router';
+import { createBrowserRouter,RouterProvider, Outlet, useLoaderData, useLocation} from 'react-router';
 import Navbar from './components/Navbar';
 import ProductCard from './components/ProductCard';
 import CustomAlert from './components/CustomAlert';
@@ -29,28 +29,32 @@ const RootLayout = ({
   setSelectedColors,
   allProducts // Pass allProducts for sidebar filters if needed
 }) => {
+  const location = useLocation(); // Use useLocation hook
+  const isCartPage = location.pathname === '/cart';
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
       <Navbar cartCount={cartCount} openCartPage={openCartPage} /> {/* Pass openCartPage */}
 
       <div className="flex-1 container mx-auto px-4 py-8 flex flex-col">
+         {!isCartPage && (
         <Toolbar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           toggleSidebar={toggleSidebar}
-          showCategoryDropdown={showCategoryDropdown}
+          showCategoryDropdown={!isCartPage && showCategoryDropdown}
           setShowCategoryDropdown={setShowCategoryDropdown}
           searchHistory={searchHistory}
           isSearchFocused={isSearchFocused}
           setIsSearchFocused={setIsSearchFocused}
         />
-
+         )}
         <div className="flex flex-col md:flex-row gap-8 flex-1">
+           {!isCartPage && (
           <Sidebar
             setCategories={setCategories}
             isSidebarOpen={isSidebarOpen}
             closeSidebar={closeSidebar}
-            showCategoryDropdown={showCategoryDropdown}
+           showCategoryDropdown={!isCartPage && showCategoryDropdown} 
             isMobile={false}
             selectedPriceRange={selectedPriceRange}
             setSelectedPriceRange={setSelectedPriceRange}
@@ -59,6 +63,7 @@ const RootLayout = ({
             setSelectedColors={setSelectedColors}
             allProducts={allProducts}
           />
+           )}
           <main className="flex-1">
             <Outlet /> {/* This is where nested routes (like the product list) will render */}
           </main>
@@ -137,6 +142,10 @@ function App() {
     };
     fetchProducts();
   }, []);
+
+
+
+  
 
   useEffect(() => {
     let tempProducts = [...products];
