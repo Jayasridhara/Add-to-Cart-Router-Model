@@ -3,10 +3,11 @@ import CartPage from './components/CartPage';
 import loadingImage from './assets/loding.gif'
 import Sidebar from './components/Sidebar';
 import Toolbar from './components/Toolbar';
-import CustomAlert from './components/CustomAlert';
+
 import { createBrowserRouter,RouterProvider, Outlet} from 'react-router';
-import ProductCard from './components/ProductCard';
 import Navbar from './components/Navbar';
+import ProductCard from './components/ProductCard';
+import CustomAlert from './components/CustomAlert';
 const RootLayout = ({
   cartCount,
   openCartPage, // Renamed from openModal

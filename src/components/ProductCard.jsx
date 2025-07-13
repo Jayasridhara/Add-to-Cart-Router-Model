@@ -1,5 +1,5 @@
-// components/ProductCard.jsx
-import React, { useState } from 'react'; // Import useState
+import { useState } from "react";
+
 
 function ProductCard({ product, addToCart, isInCart }) {
   const [showFullDescription, setShowFullDescription] = useState(false); // New state for description
