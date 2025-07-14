@@ -150,7 +150,7 @@ const Sidebar = ({
       {/* Desktop Sidebar */}
       
       {!isMobile && showCategoryDropdown && (
-        <div className="md:block w-[20%]  overflow-y-auto bg-white p-6 rounded-xl shadow-md mt-2 font-righteous">
+        <div className="hidden md:block w-[20%]  overflow-y-auto bg-white p-6 rounded-xl shadow-md mt-2 font-righteous">
           {sidebarContent}
         </div>
       )}

@@ -28,11 +28,22 @@ function CartPage({ cartItems, removeFromCart, updateQuantity }) {
   return (
     <div className="bg-white rounded-lg shadow-xl p-6 mx-auto max-w-[100%] font-righteous mt-8">
       <div className="flex justify-between items-center border-b pb-4 mb-4">
-        <h2 className="text-3xl font-bold text-gray-800">Your Shopping Cart</h2>
-        <Link to="/" className="text-blue-600 hover:underline text-lg">
-          Continue Shopping
-        </Link>
-      </div>
+        <h2 className="text-3xl font-bold text-gray-800">Your Shopping Cart</h2> 
+        <button className="
+        group relative flex items-center bg-blue-600 text-white text-lg
+        py-2 px-4 rounded overflow-hidden
+        transition-colors duration-300 hover:bg-blue-700
+      ">
+        <span> <Link to="/" >Continue Shopping </Link></span>
+        <span className="
+          inline-block ml-2 transform transition-transform duration-300
+          -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100
+        ">
+          ➜
+        </span>
+      </button>     
+        
+      </div>  
         <>
           <div className="grid grid-cols-1 gap-4">
             {cartItems.map((item) => (
@@ -57,7 +68,7 @@ function CartPage({ cartItems, removeFromCart, updateQuantity }) {
                       className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300 focus:outline-none"
                       disabled={item.quantity <= 1}
                     >
-                      -
+                      
                     </button>
                     <input
                       type="number"
@@ -96,7 +107,7 @@ function CartPage({ cartItems, removeFromCart, updateQuantity }) {
               Discount (10%): <span className="font-bold">-${discountAmount.toFixed(2)}</span>
             </div>
             <div className="text-2xl font-bold text-indigo-700 mb-4">
-              Final Price: <span className="text-4xl">${finalPrice.toFixed(2)}</span>
+              Final Price: <span className="text-2xl">${finalPrice.toFixed(2)}</span>
             </div>
            
           </div>

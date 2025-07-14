@@ -4,7 +4,7 @@ import loadingImage from './assets/loding.gif'
 import Sidebar from './components/Sidebar';
 import Toolbar from './components/Toolbar';
 
-import { createBrowserRouter,RouterProvider, Outlet, useLoaderData, useLocation} from 'react-router';
+import { createBrowserRouter,RouterProvider, Outlet, useLocation, useNavigate} from 'react-router';
 import Navbar from './components/Navbar';
 import ProductCard from './components/ProductCard';
 import CustomAlert from './components/CustomAlert';
@@ -29,11 +29,12 @@ const RootLayout = ({
   setSelectedColors,
   allProducts // Pass allProducts for sidebar filters if needed
 }) => {
+  const navigate = useNavigate();
   const location = useLocation(); // Use useLocation hook
   const isCartPage = location.pathname === '/cart';
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      <Navbar cartCount={cartCount} openCartPage={openCartPage} /> {/* Pass openCartPage */}
+      <Navbar cartCount={cartCount} openCartPage={() => navigate('/cart')}  /> {/* Pass openCartPage */}
 
       <div className="flex-1 container mx-auto px-4 py-8 flex flex-col">
          {!isCartPage && (
@@ -143,21 +144,22 @@ function App() {
     fetchProducts();
   }, []);
 
-
-
-  
-
-  useEffect(() => {
+   useEffect(() => {
     let tempProducts = [...products];
 
-    if (searchTerm.trim().length > 1) {
+    const trimmedSearch = searchTerm.trim();
+    const isValidSearch = trimmedSearch.length > 1;
+
+    if (isValidSearch) {
       const matches = products.filter(product =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        product.title.toLowerCase().includes(trimmedSearch.toLowerCase())
       );
       tempProducts = matches;
-      if (matches.length > 0 && !searchHistory.includes(searchTerm)) {
+
+      // Update history only if 2+ characters and it's not already in history
+      if (matches.length > 0 && !searchHistory.includes(trimmedSearch)) {
         setSearchHistory(prev => {
-          const updatedHistory = [searchTerm, ...prev.filter(term => term !== searchTerm)];
+          const updatedHistory = [trimmedSearch, ...prev.filter(term => term !== trimmedSearch)];
           return updatedHistory.slice(0, 5);
         });
       }
@@ -187,6 +189,7 @@ function App() {
 
     setFilteredProducts(tempProducts);
   }, [searchTerm, selectedCategories, selectedPriceRange, selectedColors, products]);
+
 
   // Modified addToCart to handle quantity
   const addToCart = (productToAdd) => {
@@ -235,19 +238,8 @@ function App() {
 
 
   const closeAlert = () => setShowAlert(false);
-
-  // Use useNavigate for programatic navigation
-  const navigate = createBrowserRouter; // This is not how you use useNavigate
-
-  // This should be inside your functional component to use hooks:
-  // import { useNavigate } from 'react-router-dom';
-  // const navigate = useNavigate();
-  // const openCartPage = () => {
-  //   navigate('/cartmodal');
-  // };
-
-  // For now, let's just make it a simple function to pass to Navbar if not using hooks inside App directly
-  // The navigate function will be defined in the router setup below.
+  
+ 
 
   const router = createBrowserRouter([
     {
@@ -255,7 +247,6 @@ function App() {
       element: (
         <RootLayout
           cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} // Total quantity for cart icon
-          openCartPage={() => router.navigate('/cart')} // Programmatic navigation
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}

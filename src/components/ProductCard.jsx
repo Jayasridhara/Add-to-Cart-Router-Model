@@ -31,12 +31,12 @@ function ProductCard({ product, addToCart, isInCart }) {
         alt={product.title}
         className="w-full h-48 object-contain p-4"
       />
-      <div className="p-4 flex-grow flex flex-col">
+      <div className="p-4 flex-grow flex flex-col font-rowdies">
         <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
           {product.title}
         </h3>
         {/* Updated description display */}
-        <p className="text-gray-600 text-sm mb-2 flex-grow">
+        <p className="text-gray-600 text-sm mb-2 flex-grow font-rowdies">
           {displayDescription}
           {needsTruncation && ( // Only show "show more/less" if description is long enough to truncate
             <button
@@ -47,11 +47,11 @@ function ProductCard({ product, addToCart, isInCart }) {
             </button>
           )}
         </p>
-        <div className="flex justify-between items-center mt-auto pt-2">
-          <span className="text-2xl font-bold text-indigo-600">${product.price.toFixed(2)}</span>
+        <div className="flex justify-between items-center mt-auto pt-2 gap-1">
+          <span className="text-xl font-bold text-indigo-600">${product.price.toFixed(2)}</span>
           <button
             onClick={handleAddToCart}
-            className={`px-4 py-2 rounded-md font-bold transition-colors duration-300 ease-in-out ${
+            className={`w-24 md:w-48 px-4 py-2 rounded-md font-bold transition-colors duration-300 ease-in-out ${
               isInCart ? 'bg-gray-400 text-white cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'
             }`}
             disabled={isInCart}
