@@ -51,7 +51,7 @@ function ProductCard({ product, addToCart, isInCart }) {
           <span className="text-xl font-bold text-indigo-600">${product.price.toFixed(2)}</span>
           <button
             onClick={handleAddToCart}
-            className={`w-24 md:w-48 px-4 py-2 rounded-md font-bold transition-colors duration-300 ease-in-out ${
+            className={`w-15 md:w-48 px-4 py-2 rounded-md font-bold transition-colors duration-300 ease-in-out ${
               isInCart ? 'bg-gray-400 text-white cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'
             }`}
             disabled={isInCart}

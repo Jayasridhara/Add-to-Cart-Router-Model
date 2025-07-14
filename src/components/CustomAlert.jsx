@@ -5,10 +5,10 @@ function CustomAlert({ isOpen, message, onClose }) {
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 font-rowdies">
       <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full transform transition-all duration-300 ease-out">
         <div className="flex justify-between items-start mb-4">
-          <h2 className="text-xl font-semibold text-gray-800">Notification</h2>
+          <h2 className="text-xl font-semibold text-gray-800 ">Notification</h2>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-1"

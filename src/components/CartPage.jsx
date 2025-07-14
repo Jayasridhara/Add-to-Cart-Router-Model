@@ -27,10 +27,10 @@ function CartPage({ cartItems, removeFromCart, updateQuantity }) {
   
   return (
     <div className="bg-white rounded-lg shadow-xl p-6 mx-auto max-w-[100%] font-righteous mt-8">
-      <div className="flex justify-between items-center border-b pb-4 mb-4">
-        <h2 className="text-3xl font-bold text-gray-800">Your Shopping Cart</h2> 
+      <div className="flex justify-between items-center border-b pb-4 mb-4 sm:gap-0.5">
+        <h2 className="md:text-3xl text-lg font-bold text-gray-800">Your Shopping Cart</h2> 
         <button className="
-        group relative flex items-center bg-blue-600 text-white text-lg
+        group relative flex items-center bg-blue-600 text-white md:text-lg
         py-2 px-4 rounded overflow-hidden
         transition-colors duration-300 hover:bg-blue-700
       ">
