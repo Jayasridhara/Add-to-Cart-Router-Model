@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 
-function ProductCard({ product, addToCart, isInCart }) {
+function ProductCard({ product, addToCart,removeFromCart,isInCart }) {
   const [showFullDescription, setShowFullDescription] = useState(false); // New state for description
 
-  const handleAddToCart = () => {
-    addToCart(product);
-  };
+  
+  const handleAdd = () => addToCart(product);
+  const handleRemove = () => removeFromCart(product.id);
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
@@ -47,17 +47,24 @@ function ProductCard({ product, addToCart, isInCart }) {
             </button>
           )}
         </p>
-        <div className="flex justify-between items-center mt-auto pt-2 gap-1">
-          <span className="text-xl font-bold text-indigo-600">${product.price.toFixed(2)}</span>
-          <button
-            onClick={handleAddToCart}
-            className={`w-15 md:w-48 px-4 py-2 rounded-md font-bold transition-colors duration-300 ease-in-out ${
-              isInCart ? 'bg-gray-400 text-white cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'
-            }`}
-            disabled={isInCart}
-          >
-            {isInCart ? 'In Cart' : 'Add to Cart'}
-          </button>
+        <div className="flex justify-between items-center mt-auto pt-2">
+          <span className="text-xl font-bold">${product.price.toFixed(2)}</span>
+
+          {isInCart ? (
+            <button
+              onClick={handleRemove}
+              className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+            >
+              Remove from Cart
+            </button>
+          ) : (
+            <button
+              onClick={handleAdd}
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            >
+              Add to Cart
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -1,12 +1,21 @@
-# React + Vite
+Jash e Kart
+A modern React-based e-commerce storefront featuring product listing, search, filtering, and cart functionality.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Features:
+Product Listing: Displays items fetched from FakeStore API; supports dynamic filtering by category, price, and color.
 
-Currently, two official plugins are available:
+Search & History: Live search with result history (last 5 searches).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Sidebar Filters: Category, price range, and color filters.
 
-## Expanding the ESLint configuration
+Cart Management:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Add/remove items with quantity support.
+
+Alerts for cart actions (item added, removed, empty cart).
+
+Cart page with item removal and quantity adjustment.
+
+Responsive UI: Tailwind CSS provides responsive layout and interactive components.
+
+Routing: Seamless navigation powered by React Router DOM.

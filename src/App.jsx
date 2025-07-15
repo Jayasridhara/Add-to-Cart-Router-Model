@@ -212,20 +212,23 @@ function App() {
   };
 
   const removeFromCart = (productId) => {
-    setCart(prevCart => {
-    // Check if the user is about to remove the last item
-    if (prevCart.length === 1 && prevCart[0].id === productId) {
-      setAlertMessage('Your Cart is empty Continue Shopping!');
-      setShowAlert(true);
-    } else {
-      setAlertMessage('Item removed from cart!');
-      setShowAlert(true);
+  setCart(prevCart => {
+    // Find the item being removed
+    const removedItem = prevCart.find(item => item.id === productId);
+
+    // Set an appropriate alert message
+    if (prevCart.length === 1 && removedItem) {
+      setAlertMessage('Your Cart is empty. Continue Shopping!');
+    } else if (removedItem) {
+      setAlertMessage(`${removedItem.title} removed from cart!`);
     }
-    // Return the new cart state
+
+    setShowAlert(true);
+
+    // Return new cart array without the removed item
     return prevCart.filter(item => item.id !== productId);
   });
-    
-  };
+};
 
   // New function to update item quantity in cart
   const updateQuantity = (productId, newQuantity) => {
@@ -277,6 +280,7 @@ function App() {
                     key={product.id}
                     product={product}
                     addToCart={addToCart}
+                     removeFromCart={removeFromCart}
                     isInCart={cart.some(item => item.id === product.id)} // Pass if in cart
                   />
                 ))}
